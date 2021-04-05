@@ -1,4 +1,5 @@
 import each from 'lodash/each'
+import gett from './getters'
 
 export const state = () => ({
   /* User */
@@ -28,6 +29,8 @@ export const state = () => ({
   /* Dark mode */
   isDarkModeActive: false
 })
+
+export const getters = gett
 
 export const mutations = {
   /* A fit-them-all commit */

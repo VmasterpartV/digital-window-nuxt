@@ -30,6 +30,7 @@ import AsideMenu from '@/components/AsideMenu'
 import FooterBar from '@/components/FooterBar'
 import Overlay from '@/components/Overlay'
 import AsideRight from '@/components/AsideRight'
+import Menu from '@/menus/students'
 
 export default {
   name: 'App',
@@ -49,132 +50,15 @@ export default {
   },
   computed: {
     menu () {
-      return [
-        'General',
-        [
-          {
-            to: '/',
-            icon: 'desktop-mac',
-            label: 'Dashboard'
-          }
-        ],
-        'Examples',
-        [
-          {
-            action: 'dark-mode-toggle',
-            label: 'Dark / White',
-            icon: 'weather-night'
-          },
-          {
-            to: '/tables',
-            label: 'Tables',
-            icon: 'table',
-            updateMark: true
-          },
-          {
-            to: '/forms',
-            label: 'Forms',
-            icon: 'square-edit-outline'
-          },
-          {
-            to: '/profile',
-            label: 'Profile',
-            icon: 'account-circle'
-          },
-          {
-            label: 'Dropdown',
-            icon: 'arrow-down-bold-circle',
-            menu: [
-              {
-                href: '#void',
-                label: 'Sub-item One'
-              },
-              {
-                href: '#void',
-                label: 'Sub-item Two'
-              }
-            ]
-          },
-          {
-            label: 'Submenus',
-            icon: 'view-list',
-            menuSecondaryKey: 'submenu-1',
-            menuSecondaryIcon: 'view-list',
-            menuSecondaryLabel: 'Example',
-            menuSecondary: [
-              'Something',
-              [
-                {
-                  icon: 'view-list',
-                  href: '#void',
-                  label: 'Sub-item One'
-                },
-                {
-                  icon: 'view-list',
-                  href: '#void',
-                  label: 'Sub-item Two'
-                }
-              ],
-              'Dropdown',
-              [
-                {
-                  label: 'Submenus',
-                  icon: 'view-list',
-                  menu: [
-                    {
-                      href: '#void',
-                      label: 'Sub-item One'
-                    },
-                    {
-                      href: '#void',
-                      label: 'Sub-item Two'
-                    }
-                  ]
-                }
-              ]
-            ]
-          }
-        ],
-        'Other',
-        [
-          {
-            to: '/full-page/login',
-            label: 'Login',
-            icon: 'lock'
-          },
-          {
-            to: '/full-page/error',
-            label: 'Error v.1',
-            icon: 'power-plug'
-          },
-          {
-            to: '/full-page/error-copy',
-            label: 'Error v.2',
-            icon: 'alert-decagram'
-          },
-          {
-            to: '/full-page/lock-screen',
-            label: 'Lock Screen',
-            icon: 'lock-reset'
-          }
-        ],
-        'About',
-        [
-          {
-            href: 'https://justboil.me/bulma-admin-template/null-nuxt',
-            label: 'About',
-            icon: 'help-circle'
-          }
-        ]
-      ]
+      return Menu
     },
     menuBottom () {
       return [
         {
           action: 'logout',
           icon: 'logout',
-          label: 'Log out',
-          state: 'info'
+          label: 'Cerrar sesión',
+          state: 'danger'
         }
       ]
     },

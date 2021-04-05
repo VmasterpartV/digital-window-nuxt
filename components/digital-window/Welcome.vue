@@ -4,19 +4,23 @@
       <div class="container has-text-centered">
         <div class="columns is-vcentered">
           <div class="column is-5">
-            <br />
+            <br>
             <figure class="is-4by3">
               <img
                 :width="500"
                 src="~assets/img/undraw_teacher_35j2.svg"
                 alt="Description"
-              />
+              >
             </figure>
           </div>
           <div class="column is-6 is-offset-1">
-            <h1 class="title is-2">Servicios Escolares</h1>
-            <h2 class="subtitle is-4">Instituto Tecnológico de Mérida</h2>
-            <br />
+            <h1 class="title is-2">
+              Servicios Escolares
+            </h1>
+            <h2 class="subtitle is-4">
+              Instituto Tecnológico de Mérida
+            </h2>
+            <br>
             <p class="has-text-centered">
               Bienvenido a la
               <b>Ventanilla Digital ITM</b> una manera de realizar tus trámites

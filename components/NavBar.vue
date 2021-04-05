@@ -1,93 +1,120 @@
 <template>
   <nav v-show="isNavBarVisible" id="navbar-main" class="navbar is-fixed-top">
     <div class="navbar-brand">
-      <a :title="toggleTooltip" class="navbar-item is-desktop-icon-only is-hidden-touch" @click.prevent="menuToggle">
+      <a
+        :title="toggleTooltip"
+        class="navbar-item is-desktop-icon-only is-hidden-touch"
+        @click.prevent="menuToggle"
+      >
         <b-icon :icon="menuToggleIcon" />
       </a>
-      <a class="navbar-item is-hidden-desktop" @click.prevent="menuToggleMobile">
+      <a class="navbar-item" href>
+        <img src="@/assets/img/logo_self_service2.png" alt="ITM">
+      </a>
+      <a
+        class="navbar-item is-hidden-desktop"
+        @click.prevent="menuToggleMobile"
+      >
         <b-icon :icon="menuToggleMobileIcon" />
       </a>
-      <div class="navbar-item no-left-space">
+      <!--<div class="navbar-item no-left-space">
         <div class="control">
-          <input class="input" placeholder="Search everywhere...">
+          <input class="input" placeholder="Search everywhere..." />
         </div>
-      </div>
+      </div>-->
     </div>
     <div class="navbar-brand is-right">
-      <a class="navbar-item navbar-item-menu-toggle is-hidden-desktop" @click.prevent="updatesToggle">
+      <a
+        class="navbar-item navbar-item-menu-toggle is-hidden-desktop"
+        @click.prevent="updatesToggle"
+      >
         <b-icon icon="bell" custom-size="default" />
       </a>
-      <a class="navbar-item navbar-item-menu-toggle is-hidden-desktop" @click.prevent="menuNavBarToggle">
+      <a
+        class="navbar-item navbar-item-menu-toggle is-hidden-desktop"
+        @click.prevent="menuNavBarToggle"
+      >
         <b-icon :icon="menuNavBarToggleIcon" custom-size="default" />
       </a>
     </div>
-    <div class="navbar-menu fadeIn animated faster" :class="{'is-active':isMenuNavBarActive}">
+    <div
+      class="navbar-menu fadeIn animated faster"
+      :class="{ 'is-active': isMenuNavBarActive }"
+    >
       <div class="navbar-end">
         <nav-bar-menu class="has-divider has-user-avatar">
           <user-avatar />
           <div class="is-user-name">
-            <span>{{ userName }}</span>
+            <span class="has-text-primary">{{ userName }}</span>
           </div>
 
           <div slot="dropdown" class="navbar-dropdown">
-            <nuxt-link to="/profile" class="navbar-item" exact-active-class="is-active">
-              <b-icon icon="account" custom-size="default" />
-              <span>My Profile</span>
+            <nuxt-link
+              to="/solicitudes"
+              class="navbar-item"
+              exact-active-class="is-active"
+            >
+              <b-icon custom-size="default" icon="file-document" />&nbsp;
+              <span>Solicitudes</span>
             </nuxt-link>
-            <a class="navbar-item">
-              <b-icon icon="settings" custom-size="default" />
-              <span>Settings</span>
-            </a>
-            <a class="navbar-item">
-              <b-icon icon="email" custom-size="default" />
-              <span>Messages</span>
-            </a>
+            <nuxt-link
+              to="/profile"
+              class="navbar-item"
+              exact-active-class="is-active"
+            >
+              <b-icon icon="account" custom-size="default" />
+              <span>Perfil</span>
+            </nuxt-link>
+            <nuxt-link
+              to="/info"
+              class="navbar-item"
+              exact-active-class="is-active"
+            >
+              <b-icon
+                custom-size="default"
+                icon="help-circle-outline"
+                exact-active-class="is-active"
+              /><span>FAQ</span>
+            </nuxt-link>
             <hr class="navbar-divider">
-            <a class="navbar-item">
-              <b-icon icon="logout" custom-size="default" />
-              <span>Log Out</span>
+            <a class="navbar-item" @click="logout">
+              <b-icon icon="logout" type="is-danger" custom-size="default" />
+              <span class="has-text-danger">Cerrar Sesión</span>
             </a>
           </div>
         </nav-bar-menu>
-        <nav-bar-menu class="has-divider">
-          <b-icon icon="menu" custom-size="default" />
-          <span>Sample Menu</span>
-          <div slot="dropdown" class="navbar-dropdown">
-            <nuxt-link to="/profile" class="navbar-item" exact-active-class="is-active">
-              <b-icon icon="account" custom-size="default" />
-              <span>My Profile</span>
-            </nuxt-link>
-            <a class="navbar-item">
-              <b-icon icon="settings" custom-size="default" />
-              <span>Settings</span>
-            </a>
-            <a class="navbar-item">
-              <b-icon icon="email" custom-size="default" />
-              <span>Messages</span>
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item">
-              <b-icon icon="logout" custom-size="default" />
-              <span>Log Out</span>
-            </a>
-          </div>
-        </nav-bar-menu>
-        <a class="navbar-item has-divider is-desktop-icon-only" title="Dark mode" @click="darkModeToggle">
+        <a
+          class="navbar-item has-divider is-desktop-icon-only"
+          title="Dark mode"
+          @click="darkModeToggle"
+        >
           <b-icon :icon="darkModeToggleIcon" custom-size="default" />
-          <span>Dark mode</span>
+          <span>Modo Oscuro</span>
         </a>
-        <a href="https://justboil.me/bulma-admin-template/null-nuxt" class="navbar-item has-divider is-desktop-icon-only" title="About">
-          <b-icon icon="help-circle-outline" custom-size="default" />
-          <span>About</span>
+        <a
+          class="navbar-item has-divider is-hidden-mobile is-desktop-icon-only"
+          :class="{ 'is-active': isAsideRightVisible }"
+          title="Updates"
+          @click.prevent="updatesToggle"
+        >
+          <b-icon
+            icon="bell"
+            custom-size="default"
+            :class="{ 'has-update-mark': hasUpdates }"
+          />
         </a>
-        <a class="navbar-item has-divider is-desktop-icon-only" :class="{'is-active':isAsideRightVisible}" title="Updates" @click.prevent="updatesToggle">
-          <b-icon icon="bell" custom-size="default" :class="{'has-update-mark':hasUpdates}" />
-          <span>Updates</span>
-        </a>
-        <a class="navbar-item is-desktop-icon-only" title="Log out" @click="logout">
-          <b-icon icon="logout" custom-size="default" />
-          <span>Log out</span>
-        </a>
+        <nuxt-link
+          to="/info"
+          class="navbar-item has-divider is-hidden-mobile is-desktop-icon-only"
+          exact-active-class="is-active"
+          title="FAQ"
+        >
+          <b-icon
+            custom-size="default"
+            icon="help-circle-outline"
+            exact-active-class="is-active"
+          />
+        </nuxt-link>
       </div>
     </div>
   </nav>
@@ -111,7 +138,7 @@ export default {
   },
   computed: {
     menuNavBarToggleIcon () {
-      return (this.isMenuNavBarActive) ? 'close' : 'dots-vertical'
+      return this.isMenuNavBarActive ? 'close' : 'dots-vertical'
     },
     menuToggleMobileIcon () {
       return this.isAsideMobileExpanded ? 'backburger' : 'forwardburger'
@@ -143,7 +170,7 @@ export default {
       this.$store.commit('asideMobileStateToggle')
     },
     menuNavBarToggle () {
-      this.isMenuNavBarActive = (!this.isMenuNavBarActive)
+      this.isMenuNavBarActive = !this.isMenuNavBarActive
     },
     updatesToggle () {
       this.$store.commit('asideRightToggle')

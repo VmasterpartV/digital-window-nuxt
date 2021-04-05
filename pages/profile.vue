@@ -53,7 +53,7 @@ export default {
   },
   head () {
     return {
-      title: 'Profile — Admin Null Nuxt.js Bulma'
+      title: 'Mi Perfil — Servicios escolares ITMerida'
     }
   }
 }

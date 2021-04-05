@@ -10,7 +10,7 @@
     >
       <b-carousel-item v-for="(item, i) in avisos" :key="i">
         <a class="image" :href="item.url" target="_blank">
-          <img :src="item.img" />
+          <img :src="item.img">
         </a>
       </b-carousel-item>
     </b-carousel>

@@ -1,5 +1,5 @@
 /* We'll need some initial vars to use here */
-@import "~bulma/sass/utilities/initial-variables";
+@import '~bulma/sass/utilities/initial-variables';
 
 /* Base: Size  */
 $size-base: 1rem;
@@ -14,9 +14,9 @@ $base-color: #2e323a;
 $base-color-light: #f1f2f2;
 
 /* General overrides */
-$primary: $cyan;
+$primary: #800000;
 $body-background-color: $white;
-$link: $blue;
+$link: #d9ad26;
 $link-visited: $purple;
 $light-border: 1px solid $base-color-light;
 $hr-height: 1px;
@@ -35,14 +35,14 @@ $navbar-dropdown-item-active-background-color: transparent;
 $navbar-input-color: $grey-darker;
 $navbar-input-placeholder-color: $grey-lighter;
 $navbar-box-shadow: 0 1px $base-color-light;
-$navbar-item-h-padding: $default-padding * .75;
+$navbar-item-h-padding: $default-padding * 0.75;
 $navbar-divider-border: 1px solid $base-color-light;
 $navbar-update-mark-color: $red;
 $navbar-avatar-size: 1.75rem;
 
 /* Aside: Bulma override */
 $menu-item-radius: 0;
-$menu-list-link-padding: $size-base * .5 0;
+$menu-list-link-padding: $size-base * 0.5 0;
 $menu-label-color: lighten($base-color, 25%);
 $menu-item-color: $link;
 $menu-item-hover-color: $black;
@@ -56,7 +56,7 @@ $aside-collapsed-width: $size-base * 4.5;
 $aside-mobile-width: $size-base * 15;
 $aside-right-width: $size-base * 15;
 $aside-icon-width: $size-base * 3;
-$aside-submenu-font-size: $size-base * .95;
+$aside-submenu-font-size: $size-base * 0.95;
 $aside-box-shadow: 1px 0 $base-color-light;
 $aside-background-color: $white;
 $aside-tools-background-color: transparent;
@@ -65,11 +65,23 @@ $aside-dropdown-background-color: transparent;
 
 /* Aside Secondary Submenu: specifics */
 $aside-secondary-background-color: lighten($aside-background-color, 5%);
-$aside-secondary-item-active-background-color: lighten($aside-secondary-background-color, 2.5%);
-$aside-secondary-item-hover-background-color: lighten($aside-secondary-background-color, 5%);
-$aside-secondary-tools-background-color: darken($aside-secondary-background-color, 5%);
+$aside-secondary-item-active-background-color: lighten(
+  $aside-secondary-background-color,
+  2.5%
+);
+$aside-secondary-item-hover-background-color: lighten(
+  $aside-secondary-background-color,
+  5%
+);
+$aside-secondary-tools-background-color: darken(
+  $aside-secondary-background-color,
+  5%
+);
 $aside-secondary-box-shadow-mobile: -2px 0 5vw $black;
-$aside-secondary-dropdown-background-color: darken($aside-secondary-background-color, 1.5%);
+$aside-secondary-dropdown-background-color: darken(
+  $aside-secondary-background-color,
+  1.5%
+);
 
 /* Title Bar: specifics */
 $title-bar-color: $grey;
@@ -100,7 +112,7 @@ $table-avatar-size-mobile: 25vw;
 $checkbox-border: 1px solid $base-color;
 
 /* Overlay: specifics */
-$overlay-background-color: rgba($white, .85);
+$overlay-background-color: rgba($white, 0.85);
 
 /* Modal card: Bulma override */
 $modal-z: 60;
@@ -117,11 +129,11 @@ $modal-card-foot-background-color: $white;
 
 /* Notification: Bulma override */
 $notification-background-color: $white;
-$notification-padding: $default-padding * .75 $default-padding;
+$notification-padding: $default-padding * 0.75 $default-padding;
 
 /* Footer: Bulma override */
 $footer-background-color: transparent;
-$footer-padding: $default-padding * .33 $default-padding;
+$footer-padding: $default-padding * 0.33 $default-padding;
 
 /* Footer: specifics */
 $footer-logo-height: $size-base * 2;
@@ -135,21 +147,17 @@ $error-page-caption-color: $grey-light;
 $error-page-icon-size: $size-base * 10;
 
 /* Icon: specifics */
-$icon-update-mark-size: $size-base * .5;
+$icon-update-mark-size: $size-base * 0.5;
 $icon-update-mark-color: $yellow;
 
 /* Slider: Buefy override */
 $slider-track-background: transparent;
 
 /* Status/State colors (based on Bulma's) */
-$state-colors:
-                ('primary', $cyan, $white),
-                ('info', $blue, $white),
-                ('success', $green, $white),
-                ('warning', $yellow, $grey-darker),
-                ('danger', $red, $white),
-                ('dark', $grey-darker, $white),
-                ('white', $white, $black-ter);
+$state-colors: ('primary', $cyan, $white), ('info', $blue, $white),
+  ('success', $green, $white), ('warning', $yellow, $grey-darker),
+  ('danger', $red, $white), ('dark', $grey-darker, $white),
+  ('white', $white, $black-ter);
 
 /* Perfect Scrollbar */
 $ps-rail-background-color: transparent;
@@ -171,7 +179,7 @@ $dark-mode-light-border: 1px solid $dark-mode-light-border-color;
 $dark-mode-link-color: $cyan;
 $dark-mode-link-active-color: $white-ter;
 $dark-mode-link-hover-color: $white-bis;
-$dark-mode-overlay-background-color: rgba($black, .85);
+$dark-mode-overlay-background-color: rgba($black, 0.85);
 $dark-mode-button-color: $white-ter;
 $dark-mode-button-hover-color: $black-ter;
 $dark-mode-card-header-button-color: $grey;

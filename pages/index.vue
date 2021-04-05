@@ -1,7 +1,7 @@
 <template>
   <div>
     <Welcome />
-    <br />
+    <br>
     <Carousel />
     <RequestsInfo />
   </div>

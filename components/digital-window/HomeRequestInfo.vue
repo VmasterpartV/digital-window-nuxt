@@ -1,16 +1,18 @@
 <template>
-  <section class="section" id="about">
+  <section id="about" class="section">
     <div class="container has-text-centered">
-      <h2 class="title">Trámites</h2>
+      <h2 class="title">
+        Trámites
+      </h2>
       <!--<p v-if="$store.state.users.isLogued">
         Selecciona el trámite que deseas realizar
       </p>
       <p v-else>Se requiere una cuenta para realizar los trámites</p>-->
       <p>Se requiere una cuenta para realizar los trámites</p>
     </div>
-    <br />
+    <br>
     <div class="columns is-centered">
-      <div class="column" v-for="(r, i) in requests" :key="i">
+      <div v-for="(r, i) in requests" :key="i" class="column">
         <RequestInfoCard :request="r" />
       </div>
     </div>

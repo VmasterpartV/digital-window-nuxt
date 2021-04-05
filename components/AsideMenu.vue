@@ -2,15 +2,24 @@
   <aside
     v-show="isAsideVisible"
     class="aside is-placed-left"
-    :class="{'is-expanded':isAsideExpanded || isSecondary, 'is-secondary':isSecondary}"
+    :class="{
+      'is-expanded': isAsideExpanded || isSecondary,
+      'is-secondary': isSecondary
+    }"
   >
     <aside-tools :has-close="isSecondary" :icon="icon" @close="close">
       <span v-if="!isSecondary">
         <template v-if="isAsideExpanded || isAsideMobileExpanded">
-          <b>Admin</b> Null Nuxt.js
+          <b>{{ $store.getters.owner }}</b> {{ $store.getters.department }}
         </template>
         <template v-else>
-          <b>JB</b>
+          <nuxt-link to="/">
+            <img
+              style="width: 28px; padding-top: 15px;"
+              :src="$store.getters.logo"
+              alt=""
+            >
+          </nuxt-link>
         </template>
       </span>
       <span v-else-if="label">{{ label }}</span>
@@ -18,7 +27,11 @@
     <div ref="menuContainer" class="menu-container" @mouseenter="psUpdate">
       <div class="menu is-menu-main">
         <template v-for="(menuGroup, index) in menu">
-          <p v-if="typeof menuGroup === 'string'" :key="index" class="menu-label">
+          <p
+            v-if="typeof menuGroup === 'string'"
+            :key="index"
+            class="menu-label"
+          >
             {{ menuGroup }}
           </p>
           <aside-menu-list
@@ -69,11 +82,7 @@ export default {
     }
   },
   computed: {
-    ...mapState([
-      'isAsideVisible',
-      'isAsideExpanded',
-      'isAsideMobileExpanded'
-    ])
+    ...mapState(['isAsideVisible', 'isAsideExpanded', 'isAsideMobileExpanded'])
   },
   mounted () {
     this.ps = new PerfectScrollbar(this.$refs.menuContainer)

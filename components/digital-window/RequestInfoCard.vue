@@ -2,13 +2,15 @@
   <div class="card box cta">
     <div class="card-image">
       <figure class="image img">
-        <img :src="request.img" alt="Placeholder image" />
+        <img :src="request.img" alt="Placeholder image">
       </figure>
     </div>
     <div class="card-content">
       <div class="media">
         <div class="media-content">
-          <h1 class="title is-4">{{ request.label }}</h1>
+          <h1 class="title is-4">
+            {{ request.label }}
+          </h1>
           <p>
             {{ request.description }}
           </p>
@@ -20,9 +22,10 @@
           >
             <strong>Solicitar</strong>
           </a>
-          <router-link v-else tag="a" to="/info" class="button is-primary">
+          <nuxt-link v-else tag="a" to="/info" class="button is-primary">
             <strong>Info.</strong>
-          </router-link>-->
+          </nuxt-link>
+          -->
         </div>
       </div>
     </div>
@@ -32,7 +35,12 @@
 <script>
 export default {
   name: 'RequestInfoCard',
-  props: ['request'],
+  props: {
+    request: {
+      type: Object,
+      default: null
+    }
+  },
   methods: {
     show_form (value) {
       this.$store.commit('users/SHOW_FORM', value)
