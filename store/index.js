@@ -1,6 +1,21 @@
 import each from 'lodash/each'
 import gett from './getters'
 
+// https://webpack.js.org/guides/dependency-management/#requirecontext
+const modulesFiles = require.context('./modules', true, /\.js$/)
+
+// you do not need `import app from './modules/app'`
+// it will auto require all vuex module from modules file
+const mod = modulesFiles.keys().reduce((mod, modulePath) => {
+  // set './app.js' => 'app'
+  const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
+  const value = modulesFiles(modulePath)
+  mod[moduleName] = value.default
+  return mod
+}, {})
+
+export const modules = mod
+
 export const state = () => ({
   /* User */
   userName: null,

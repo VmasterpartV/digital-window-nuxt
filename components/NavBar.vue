@@ -8,9 +8,9 @@
       >
         <b-icon :icon="menuToggleIcon" />
       </a>
-      <a class="navbar-item" href>
-        <img src="@/assets/img/logo_self_service2.png" alt="ITM">
-      </a>
+      <b-navbar-item tag="nuxt-link" :to="{ path: '/' }">
+        <img src="@/assets/img/logo_self_service2.png" alt="Logo ITMerida">
+      </b-navbar-item>
       <a
         class="navbar-item is-hidden-desktop"
         @click.prevent="menuToggleMobile"
@@ -83,14 +83,14 @@
             </a>
           </div>
         </nav-bar-menu>
-        <a
+        <!--<a
           class="navbar-item has-divider is-desktop-icon-only"
           title="Dark mode"
           @click="darkModeToggle"
         >
           <b-icon :icon="darkModeToggleIcon" custom-size="default" />
           <span>Modo Oscuro</span>
-        </a>
+        </a>-->
         <a
           class="navbar-item has-divider is-hidden-mobile is-desktop-icon-only"
           :class="{ 'is-active': isAsideRightVisible }"
@@ -131,10 +131,19 @@ export default {
     UserAvatar,
     NavBarMenu
   },
+  props: {
+    userName: {
+      type: String,
+      default: ''
+    }
+  },
   data () {
     return {
       isMenuNavBarActive: false
     }
+  },
+  mounted () {
+    // console.log(this.userName)
   },
   computed: {
     menuNavBarToggleIcon () {
@@ -158,7 +167,6 @@ export default {
       'isAsideMobileExpanded',
       'isAsideRightVisible',
       'isDarkModeActive',
-      'userName',
       'hasUpdates'
     ])
   },

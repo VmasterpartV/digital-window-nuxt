@@ -1,6 +1,6 @@
 <template>
   <div class="is-user-avatar">
-    <img :src="`https://avatars.dicebear.com/api/initials/${userName}.svg?b=%23800000`" :alt="userName">
+    <img :src="`https://avatars.dicebear.com/api/initials/${$store.state.users.user.first_name}.svg?b=%23800000`" :alt="$store.state.users.user.first_name">
   </div>
 </template>
 

@@ -1,31 +1,46 @@
 <template>
   <div id="app">
-    <nav-bar />
-    <aside-menu
-      :menu="menu"
-      :menu-bottom="menuBottom"
-      :class="{'has-secondary':!!menuSecondary}"
-      @menu-click="menuClick"
-    />
-    <aside-menu
-      v-if="menuSecondary"
-      :menu="menuSecondary"
-      :is-secondary="true"
-      :label="menuSecondaryLabel"
-      :icon="menuSecondaryIcon"
-      @menu-click="menuClick"
-      @close="menuSecondaryCloseClick"
-    />
-    <nuxt />
-    <aside-right />
-    <footer-bar />
-    <overlay />
+    <!-- ------------Authenticated---------- -->
+    <template v-if="$store.state.users.isLogued">
+      <nav-bar
+        :user-name="
+          $store.state.students.studentForm.enrollment
+            ? $store.state.students.studentForm.enrollment
+            : $store.state.users.user.first_name
+        "
+      />
+      <aside-menu
+        :menu="menu"
+        :menu-bottom="menuBottom"
+        :class="{ 'has-secondary': !!menuSecondary }"
+        @menu-click="menuClick"
+      />
+      <aside-menu
+        v-if="menuSecondary"
+        :menu="menuSecondary"
+        :is-secondary="true"
+        :label="menuSecondaryLabel"
+        :icon="menuSecondaryIcon"
+        @menu-click="menuClick"
+        @close="menuSecondaryCloseClick"
+      />
+      <nuxt />
+      <aside-right />
+      <footer-bar />
+      <overlay />
+    </template>
+    <!-- ------------Public---------- -->
+    <template v-else>
+      <public-nav-bar />
+      <nuxt />
+    </template>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import NavBar from '@/components/NavBar'
+import PublicNavBar from '@/components/digital-window/PublicNavBar'
 import AsideMenu from '@/components/AsideMenu'
 import FooterBar from '@/components/FooterBar'
 import Overlay from '@/components/Overlay'
@@ -39,7 +54,8 @@ export default {
     Overlay,
     FooterBar,
     AsideMenu,
-    NavBar
+    NavBar,
+    PublicNavBar
   },
   data () {
     return {
@@ -62,9 +78,7 @@ export default {
         }
       ]
     },
-    ...mapState([
-      'isOverlayVisible'
-    ])
+    ...mapState(['isOverlayVisible'])
   },
   watch: {
     isOverlayVisible (newValue) {
@@ -80,17 +94,24 @@ export default {
       avatar: 'https://avatars.dicebear.com/v2/gridy/John-Doe.svg'
     })
   },
-  mounted () {
-    document.documentElement.classList.add('has-aside-left')
-    document.documentElement.classList.add('has-aside-mobile-transition')
-    document.documentElement.classList.add('has-navbar-fixed-top')
+  async mounted () {
+    await this.$store.dispatch('users/getUser')
+    if (await this.$store.state.users.isLogued) {
+      document.documentElement.classList.add('has-aside-left')
+      document.documentElement.classList.add('has-aside-mobile-transition')
+      document.documentElement.classList.add('has-navbar-fixed-top')
+    }
   },
   methods: {
     menuClick (item) {
       if (item.menuSecondary) {
         this.menuSecondary = item.menuSecondary
-        this.menuSecondaryLabel = item.menuSecondaryLabel ? item.menuSecondaryLabel : null
-        this.menuSecondaryIcon = item.menuSecondaryIcon ? item.menuSecondaryIcon : null
+        this.menuSecondaryLabel = item.menuSecondaryLabel
+          ? item.menuSecondaryLabel
+          : null
+        this.menuSecondaryIcon = item.menuSecondaryIcon
+          ? item.menuSecondaryIcon
+          : null
 
         this.$store.commit('asideActiveForcedKeyToggle', item)
         this.$store.commit('overlayToggle', true)
@@ -115,5 +136,4 @@ export default {
     }
   }
 }
-
 </script>
